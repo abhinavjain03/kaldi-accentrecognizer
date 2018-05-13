@@ -1,0 +1,85 @@
+2018-02-23 11:50:06,198 [steps/nnet3/train_raw_dnn.py:34 - <module> - INFO ] Starting raw DNN trainer (train_raw_dnn.py)
+2018-02-23 11:50:06,231 [steps/nnet3/train_raw_dnn.py:172 - train - INFO ] Arguments for the experiment
+{'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl --mem 4G',
+ 'compute_average_posteriors': False,
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs',
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/cv_train_with_accents_except_england_canada_hires',
+ 'final_effective_lrate': 0.00017,
+ 'frames_per_eg': 8,
+ 'image_augmentation_opts': None,
+ 'initial_effective_lrate': 0.0017,
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '512',
+ 'momentum': 0.0,
+ 'nj': 4,
+ 'num_epochs': 2.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 6,
+ 'num_jobs_initial': 3,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 20,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'targets_scp': None,
+ 'transform_dir': None,
+ 'use_dense_targets': False,
+ 'use_gpu': True}
+2018-02-23 11:50:06,245 [steps/libs/nnet3/train/common.py:440 - verify_egs_dir - WARNING ] The ivector ids are not used. It's your responsibility to make sure the ivector extractor has been used consistently
+2018-02-23 11:50:06,246 [steps/nnet3/train_raw_dnn.py:283 - train - INFO ] Preparing the initial network.
+2018-02-23 11:50:06,968 [steps/nnet3/train_raw_dnn.py:322 - train - INFO ] Training will run for 2.0 epochs = 21 iterations
+2018-02-23 11:50:06,969 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 0)
+2018-02-23 11:50:06,978 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 0, learning rate is 0.0051.
+2018-02-23 11:51:36,357 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 1)
+2018-02-23 11:51:36,365 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 1, learning rate is 0.00474591740874.
+2018-02-23 11:52:57,261 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 2)
+2018-02-23 11:52:57,271 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 2, learning rate is 0.00441641804914.
+2018-02-23 11:54:19,308 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 3)
+2018-02-23 11:54:19,314 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 3, learning rate is 0.00410979515758.
+2018-02-23 11:55:42,715 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 4)
+2018-02-23 11:55:42,722 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 4, learning rate is 0.00509928062346.
+2018-02-23 11:57:39,237 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 5)
+2018-02-23 11:57:39,244 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 5, learning rate is 0.00463278606959.
+2018-02-23 11:59:39,977 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 6)
+2018-02-23 11:59:39,986 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 6, learning rate is 0.00420896756846.
+2018-02-23 12:01:38,143 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 7)
+2018-02-23 12:01:38,152 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 7, learning rate is 0.00382392101129.
+2018-02-23 12:03:38,784 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 8)
+2018-02-23 12:03:38,789 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 8, learning rate is 0.00347409944666.
+bash: line 1: 26171 Aborted                 (core dumped) ( nnet3-train --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --write-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.9 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.25 --backstitch-training-interval=1 --srand=8 "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=1              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.5.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |" exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.1.raw ) 2>> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log >> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log
+bash: line 1: 26169 Aborted                 (core dumped) ( nnet3-train --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.25 --backstitch-training-interval=1 --srand=8 "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=7              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.2.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |" exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.4.raw ) 2>> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log >> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log
+bash: line 1: 26167 Aborted                 (core dumped) ( nnet3-train --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.25 --backstitch-training-interval=1 --srand=8 "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=6              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.1.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |" exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.3.raw ) 2>> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log >> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log
+bash: line 1: 26166 Aborted                 (core dumped) ( nnet3-train --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.25 --backstitch-training-interval=1 --srand=8 "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=2              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.6.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |" exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.2.raw ) 2>> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.2.log >> exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.2.log
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log
+2018-02-23 12:05:40,822 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --write-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=1              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.5.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.1.raw
+steps/nnet3/train_raw_dnn.py --stage=-10 --cmd=run.pl --mem 4G --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 2 --trainer.optimization.num-jobs-initial 3 --trainer.optimization.num-jobs-final 6 --trainer.optimization.initial-effective-lrate 0.0017 --trainer.optimization.final-effective-lrate 0.00017 --egs.dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs --cleanup.preserve-model-interval 20 --use-gpu true --use-dense-targets false --feat-dir=data/cv_train_with_accents_except_england_canada_hires --reporting.email= --dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada
+['steps/nnet3/train_raw_dnn.py', '--stage=-10', '--cmd=run.pl --mem 4G', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '2', '--trainer.optimization.num-jobs-initial', '3', '--trainer.optimization.num-jobs-final', '6', '--trainer.optimization.initial-effective-lrate', '0.0017', '--trainer.optimization.final-effective-lrate', '0.00017', '--egs.dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs', '--cleanup.preserve-model-interval', '20', '--use-gpu', 'true', '--use-dense-targets', 'false', '--feat-dir=data/cv_train_with_accents_except_england_canada_hires', '--reporting.email=', '--dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada']
+2018-02-23 12:05:40,823 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=6              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.1.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.3.raw
+Exception KeyboardInterrupt2018-02-23 12:05:40,823 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00347409944666 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=7              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.2.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.4.raw
+ in <object repr() failed> ignored
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.2.log

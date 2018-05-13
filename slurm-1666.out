@@ -1,0 +1,112 @@
+steps/align_fmllr.sh --nj 20 --cmd run.pl data/cv_train_with_accents_except_newzealand+adaptonlynz data/lang /exp/abhinav/accents_exp/tri4 exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali
+steps/align_fmllr.sh: feature type is lda
+steps/align_fmllr.sh: compiling training graphs
+steps/align_fmllr.sh: aligning data in data/cv_train_with_accents_except_newzealand+adaptonlynz using /exp/abhinav/accents_exp/tri4/final.alimdl and speaker-independent features.
+steps/align_fmllr.sh: computing fMLLR transforms
+steps/align_fmllr.sh: doing final alignment.
+steps/align_fmllr.sh: done aligning data.
+steps/diagnostic/analyze_alignments.sh --cmd run.pl data/lang exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali
+steps/diagnostic/analyze_alignments.sh: see stats in exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali/log/analyze_alignments.log
+62491 warnings in exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali/log/fmllr.*.log
+2354 warnings in exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali/log/align_pass1.*.log
+2613 warnings in exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali/log/align_pass2.*.log
+mkdir: cannot create directory 'test': File exists
+ali-to-pdf exp/tri4_cv_train_with_accents_except_newzealand+adaptonlynz_ali/final.mdl ark:- ark,t:test/ali.scp 
+LOG (ali-to-pdf[5.2.204~1-08848]:main():ali-to-pdf.cc:68) Converted 63356 alignments to pdf sequences.
+./temp data/cv_train_with_accents_except_newzealand+adaptonlynz/accent_num test/ali.scp 'ark:|gzip -c > exp/tri4_accents_cv_train_with_accents_except_newzealand+adaptonlynz_ali/ali.1.gz' 
+Size of uttToAccent:63912
+Size of uttToAlign:63356
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs/network.xconfig --config-dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs/
+nnet3-init exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.config exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.config exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+./my_run.sh: calling get_egs.sh for generating examples with alignments as output
+steps/nnet3/get_egs_mod.sh --cmvn-opts --norm-means=false --norm-vars=false --left-context 16 --right-context 12 --num-utts-subset 300 --nj 20 --num-pdfs 16 --samples-per-iter 400000 --cmd run.pl --frames-per-eg 8 data/cv_train_with_accents_except_newzealand+adaptonlynz_hires exp/tri4_accents_cv_train_with_accents_except_newzealand+adaptonlynz_ali exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs
+steps/nnet3/get_egs_mod.sh: feature type is raw
+steps/nnet3/get_egs_mod.sh: working out number of frames of training data
+feat-to-len 'scp:head -n 10 data/cv_train_with_accents_except_newzealand+adaptonlynz_hires/feats.scp|' ark,t:- 
+steps/nnet3/get_egs_mod.sh: working out feature dim
+steps/nnet3/get_egs_mod.sh: creating 9 archives, each with 361674 egs, with
+steps/nnet3/get_egs_mod.sh:   8 labels per example, and (left,right) context = (16,12)
+steps/nnet3/get_egs_mod.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/ali.ark,exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/ali.scp 
+LOG (copy-int-vector[5.2.204~1-08848]:main():copy-int-vector.cc:83) Copied 63356 vectors of int32.
+steps/nnet3/get_egs_mod.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs_mod.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs_mod.sh: Generating training examples on disk
+steps/nnet3/get_egs_mod.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs_mod.sh: removing temporary archives
+steps/nnet3/get_egs_mod.sh: removing temporary alignments and transforms
+steps/nnet3/get_egs_mod.sh: Finished preparing training examples
+2018-02-23 14:50:31,788 [steps/nnet3/train_raw_dnn.py:34 - <module> - INFO ] Starting raw DNN trainer (train_raw_dnn.py)
+2018-02-23 14:50:31,798 [steps/nnet3/train_raw_dnn.py:172 - train - INFO ] Arguments for the experiment
+{'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl --mem 4G',
+ 'compute_average_posteriors': False,
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs',
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/cv_train_with_accents_except_newzealand+adaptonlynz_hires',
+ 'final_effective_lrate': 0.00017,
+ 'frames_per_eg': 8,
+ 'image_augmentation_opts': None,
+ 'initial_effective_lrate': 0.0017,
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '512',
+ 'momentum': 0.0,
+ 'nj': 4,
+ 'num_epochs': 2.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 6,
+ 'num_jobs_initial': 3,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 20,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': 8,
+ 'targets_scp': None,
+ 'transform_dir': None,
+ 'use_dense_targets': False,
+ 'use_gpu': True}
+2018-02-23 14:50:31,854 [steps/libs/nnet3/train/common.py:440 - verify_egs_dir - WARNING ] The ivector ids are not used. It's your responsibility to make sure the ivector extractor has been used consistently
+2018-02-23 14:50:31,881 [steps/nnet3/train_raw_dnn.py:322 - train - INFO ] Training will run for 2.0 epochs = 32 iterations
+2018-02-23 14:50:31,881 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 8)
+2018-02-23 14:50:31,886 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 8, learning rate is 0.00448697197657.
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/compute_prob_train.8.log
+2018-02-23 14:50:36,350 [steps/libs/common.py:237 - background_command_waiter - WARNING ] Command exited with status 1: run.pl --mem 4G exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/compute_prob_train.8.log                 nnet3-compute-prob  "exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw"                 "ark,bg:nnet3-copy-egs                      ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/train_diagnostic.egs ark:- |                     nnet3-merge-egs --minibatch-size=1:64 ark:-                     ark:- |" 
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/compute_prob_valid.8.log
+2018-02-23 14:50:36,366 [steps/libs/common.py:237 - background_command_waiter - WARNING ] Command exited with status 1:  run.pl --mem 4G exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/compute_prob_valid.8.log                 nnet3-compute-prob "exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw"                 "ark,bg:nnet3-copy-egs                      ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/valid_diagnostic.egs ark:- |                     nnet3-merge-egs --minibatch-size=1:64 ark:-                     ark:- |" 
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log
+2018-02-23 14:50:44,330 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.4.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00448697197657 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=6              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.3.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.4.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.2.log
+2018-02-23 14:50:44,549 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.2.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00448697197657 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=4              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.1.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.2.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log
+2018-02-23 14:50:45,013 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.3.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00448697197657 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=5              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.2.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.3.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log
+2018-02-23 14:50:45,279 [steps/libs/common.py:231 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --mem 4G --gpu 1 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/log/train.8.1.log                     nnet3-train  --read-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.8 --write-cache=exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.25                     --backstitch-training-interval=1                     --srand=8                      "nnet3-copy --learning-rate=0.00448697197657 --scale=1.0 exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/8.raw - |" "ark,bg:nnet3-copy-egs --frame=3              ark:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/egs.9.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=8 ark:- ark:- |              nnet3-merge-egs --minibatch-size=512 ark:- ark:- |"                     exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/9.1.raw
+steps/nnet3/train_raw_dnn.py --stage=8 --cmd=run.pl --mem 4G --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 2 --trainer.optimization.num-jobs-initial 3 --trainer.optimization.num-jobs-final 6 --trainer.optimization.initial-effective-lrate 0.0017 --trainer.optimization.final-effective-lrate 0.00017 --egs.dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs --cleanup.preserve-model-interval 20 --use-gpu true --use-dense-targets false --feat-dir=data/cv_train_with_accents_except_newzealand+adaptonlynz_hires --reporting.email= --dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada
+['steps/nnet3/train_raw_dnn.py', '--stage=8', '--cmd=run.pl --mem 4G', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '2', '--trainer.optimization.num-jobs-initial', '3', '--trainer.optimization.num-jobs-final', '6', '--trainer.optimization.initial-effective-lrate', '0.0017', '--trainer.optimization.final-effective-lrate', '0.00017', '--egs.dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs', '--cleanup.preserve-model-interval', '20', '--use-gpu', 'true', '--use-dense-targets', 'false', '--feat-dir=data/cv_train_with_accents_except_newzealand+adaptonlynz_hires', '--reporting.email=', '--dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada']

@@ -1,0 +1,135 @@
+steps/make_mfcc.sh --nj 30 --mfcc-config conf/mfcc_16k.conf --cmd run.pl data/cv_train_nz_with_accents exp/make_mfcc/cv_train_nz_with_accents exp/mfcc
+steps/make_mfcc.sh: moving data/cv_train_nz_with_accents/feats.scp to data/cv_train_nz_with_accents/.backup
+Checking data/cv_train_nz_with_accents/text ...
+--> reading data/cv_train_nz_with_accents/text
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+utils/validate_data_dir.sh: Successfully validated data-directory data/cv_train_nz_with_accents
+steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
+Succeeded creating MFCC features for cv_train_nz_with_accents
+steps/compute_cmvn_stats.sh data/cv_train_nz_with_accents exp/make_mfcc/cv_train_nz_with_accents exp/mfcc
+Succeeded creating CMVN stats for cv_train_nz_with_accents
+fix_data_dir.sh: kept all 30896 utterances.
+fix_data_dir.sh: old files are kept in data/cv_train_nz_with_accents/.backup
+utils/copy_data_dir.sh: copied data from data/cv_train_nz_with_accents to data/cv_train_nz_with_accents_hires
+Checking data/cv_train_nz_with_accents_hires/text ...
+--> reading data/cv_train_nz_with_accents_hires/text
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+utils/validate_data_dir.sh: Successfully validated data-directory data/cv_train_nz_with_accents_hires
+steps/make_mfcc.sh --nj 30 --mfcc-config conf/mfcc_hires_16k.conf --cmd run.pl data/cv_train_nz_with_accents_hires exp/make_hires/cv_train_nz_with_accents exp/mfcc_hires
+steps/make_mfcc.sh: moving data/cv_train_nz_with_accents_hires/feats.scp to data/cv_train_nz_with_accents_hires/.backup
+Checking data/cv_train_nz_with_accents_hires/text ...
+--> reading data/cv_train_nz_with_accents_hires/text
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+utils/validate_data_dir.sh: Successfully validated data-directory data/cv_train_nz_with_accents_hires
+steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
+Succeeded creating MFCC features for cv_train_nz_with_accents_hires
+steps/compute_cmvn_stats.sh data/cv_train_nz_with_accents_hires exp/make_hires/cv_train_nz_with_accents exp/mfcc_hires
+Succeeded creating CMVN stats for cv_train_nz_with_accents_hires
+fix_data_dir.sh: kept all 30896 utterances.
+fix_data_dir.sh: old files are kept in data/cv_train_nz_with_accents_hires/.backup
+steps/align_fmllr.sh --nj 30 --cmd run.pl data/cv_train_nz_with_accents data/lang /exp/abhinav/accents_exp/tri4 exp/tri4_cv_train_nz_with_accents_ali
+steps/align_fmllr.sh: feature type is lda
+steps/align_fmllr.sh: compiling training graphs
+steps/align_fmllr.sh: aligning data in data/cv_train_nz_with_accents using /exp/abhinav/accents_exp/tri4/final.alimdl and speaker-independent features.
+steps/align_fmllr.sh: computing fMLLR transforms
+steps/align_fmllr.sh: doing final alignment.
+steps/align_fmllr.sh: done aligning data.
+steps/diagnostic/analyze_alignments.sh --cmd run.pl data/lang exp/tri4_cv_train_nz_with_accents_ali
+steps/diagnostic/analyze_alignments.sh: see stats in exp/tri4_cv_train_nz_with_accents_ali/log/analyze_alignments.log
+30005 warnings in exp/tri4_cv_train_nz_with_accents_ali/log/fmllr.*.log
+82 warnings in exp/tri4_cv_train_nz_with_accents_ali/log/align_pass2.*.log
+80 warnings in exp/tri4_cv_train_nz_with_accents_ali/log/align_pass1.*.log
+mkdir: cannot create directory 'test': File exists
+ali-to-pdf exp/tri4_cv_train_nz_with_accents_ali/final.mdl ark:- ark,t:test/ali.scp 
+LOG (ali-to-pdf[5.2.204~1-08848]:main():ali-to-pdf.cc:68) Converted 30892 alignments to pdf sequences.
+./temp data/cv_train_nz_with_accents/accent_num test/ali.scp 'ark:|gzip -c > exp/tri4_accents_cv_train_nz_with_accents_ali/ali.1.gz' 
+Size of uttToAccent:30896
+Size of uttToAlign:30892
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs/network.xconfig --config-dir exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs/
+nnet3-init exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.config exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.config exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/configs//ref.raw 
+./my_run.sh: calling get_egs.sh for generating examples with alignments as output
+steps/nnet3/get_egs_mod.sh --cmvn-opts --norm-means=false --norm-vars=false --left-context 16 --right-context 12 --num-utts-subset 300 --nj 30 --num-pdfs 7 --samples-per-iter 400000 --cmd run.pl --frames-per-eg 8 data/cv_train_nz_with_accents_hires exp/tri4_accents_cv_train_nz_with_accents_ali exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs
+steps/nnet3/get_egs_mod.sh: feature type is raw
+steps/nnet3/get_egs_mod.sh: working out number of frames of training data
+feat-to-len 'scp:head -n 10 data/cv_train_nz_with_accents_hires/feats.scp|' ark,t:- 
+steps/nnet3/get_egs_mod.sh: working out feature dim
+steps/nnet3/get_egs_mod.sh: creating 4 archives, each with 384730 egs, with
+steps/nnet3/get_egs_mod.sh:   8 labels per example, and (left,right) context = (16,12)
+steps/nnet3/get_egs_mod.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs/ali.ark,exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs/ali.scp 
+LOG (copy-int-vector[5.2.204~1-08848]:main():copy-int-vector.cc:83) Copied 30892 vectors of int32.
+steps/nnet3/get_egs_mod.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs_mod.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs_mod.sh: Generating training examples on disk
+steps/nnet3/get_egs_mod.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs_mod.sh: removing temporary archives
+steps/nnet3/get_egs_mod.sh: removing temporary alignments and transforms
+steps/nnet3/get_egs_mod.sh: Finished preparing training examples
+2018-03-15 01:58:57,431 [steps/nnet3/train_raw_dnn.py:34 - <module> - INFO ] Starting raw DNN trainer (train_raw_dnn.py)
+2018-03-15 01:58:57,440 [steps/nnet3/train_raw_dnn.py:172 - train - INFO ] Arguments for the experiment
+{'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl --mem 4G',
+ 'compute_average_posteriors': False,
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': 'exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs',
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/cv_train_nz_with_accents_hires',
+ 'final_effective_lrate': 0.00017,
+ 'frames_per_eg': 8,
+ 'image_augmentation_opts': None,
+ 'initial_effective_lrate': 0.0017,
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '512',
+ 'momentum': 0.0,
+ 'nj': 4,
+ 'num_epochs': 2.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 6,
+ 'num_jobs_initial': 3,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 20,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'targets_scp': None,
+ 'transform_dir': None,
+ 'use_dense_targets': False,
+ 'use_gpu': True}
+2018-03-15 01:58:57,450 [steps/libs/nnet3/train/common.py:440 - verify_egs_dir - WARNING ] The ivector ids are not used. It's your responsibility to make sure the ivector extractor has been used consistently
+Traceback (most recent call last):
+  File "steps/nnet3/train_raw_dnn.py", line 453, in main
+    train(args, run_opts)
+  File "steps/nnet3/train_raw_dnn.py", line 267, in train
+    raise Exception('num_jobs_final cannot exceed the number of archives '
+Exception: num_jobs_final cannot exceed the number of archives in the egs directory
+steps/nnet3/train_raw_dnn.py --stage=-10 --cmd=run.pl --mem 4G --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 2 --trainer.optimization.num-jobs-initial 3 --trainer.optimization.num-jobs-final 6 --trainer.optimization.initial-effective-lrate 0.0017 --trainer.optimization.final-effective-lrate 0.00017 --egs.dir exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs --cleanup.preserve-model-interval 20 --use-gpu true --use-dense-targets false --feat-dir=data/cv_train_nz_with_accents_hires --reporting.email= --dir exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz
+['steps/nnet3/train_raw_dnn.py', '--stage=-10', '--cmd=run.pl --mem 4G', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '2', '--trainer.optimization.num-jobs-initial', '3', '--trainer.optimization.num-jobs-final', '6', '--trainer.optimization.initial-effective-lrate', '0.0017', '--trainer.optimization.final-effective-lrate', '0.00017', '--egs.dir', 'exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz/egs', '--cleanup.preserve-model-interval', '20', '--use-gpu', 'true', '--use-dense-targets', 'false', '--feat-dir=data/cv_train_nz_with_accents_hires', '--reporting.email=', '--dir', 'exp/nnet3/tdnn_relufirst_1024nodes_300bnlayer_nz']

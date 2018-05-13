@@ -1,0 +1,1 @@
+/home/abhinav/kaldi/accents/local/nnet3/tuning/run_tdnn_d_added_multitask.sh

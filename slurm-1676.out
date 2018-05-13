@@ -1,0 +1,145 @@
+steps/align_fmllr.sh --nj 20 --cmd run.pl data/cv_train_with_accents_except_england_canada data/lang /exp/abhinav/accents_exp/tri4 exp/tri4_cv_train_with_accents_except_england_canada_ali
+steps/align_fmllr.sh: feature type is lda
+steps/align_fmllr.sh: compiling training graphs
+steps/align_fmllr.sh: aligning data in data/cv_train_with_accents_except_england_canada using /exp/abhinav/accents_exp/tri4/final.alimdl and speaker-independent features.
+steps/align_fmllr.sh: computing fMLLR transforms
+steps/align_fmllr.sh: doing final alignment.
+steps/align_fmllr.sh: done aligning data.
+steps/diagnostic/analyze_alignments.sh --cmd run.pl data/lang exp/tri4_cv_train_with_accents_except_england_canada_ali
+steps/diagnostic/analyze_alignments.sh: see stats in exp/tri4_cv_train_with_accents_except_england_canada_ali/log/analyze_alignments.log
+44979 warnings in exp/tri4_cv_train_with_accents_except_england_canada_ali/log/fmllr.*.log
+2491 warnings in exp/tri4_cv_train_with_accents_except_england_canada_ali/log/align_pass2.*.log
+2248 warnings in exp/tri4_cv_train_with_accents_except_england_canada_ali/log/align_pass1.*.log
+mkdir: cannot create directory 'test': File exists
+mkdir: cannot create directory 'exp/tri4_accents_cv_train_with_accents_except_england_canada_ali': File exists
+ali-to-pdf exp/tri4_cv_train_with_accents_except_england_canada_ali/final.mdl ark:- ark,t:test/ali.scp 
+LOG (ali-to-pdf[5.2.204~1-08848]:main():ali-to-pdf.cc:68) Converted 45328 alignments to pdf sequences.
+./temp data/cv_train_with_accents_except_england_canada/accent_num test/ali.scp 'ark:|gzip -c > exp/tri4_accents_cv_train_with_accents_except_england_canada_ali/ali.1.gz' 
+Size of uttToAccent:45872
+Size of uttToAlign:45328
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs/network.xconfig --config-dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs/
+nnet3-init exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.config exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.config exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+LOG (nnet3-init[5.2.204~1-08848]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/configs//ref.raw 
+./my_run_1.sh: calling get_egs.sh for generating examples with alignments as output
+steps/nnet3/get_egs_mod.sh --cmvn-opts --norm-means=false --norm-vars=false --left-context 16 --right-context 12 --num-utts-subset 300 --nj 20 --num-pdfs 16 --samples-per-iter 400000 --cmd run.pl --frames-per-eg 8 data/cv_train_with_accents_except_england_canada_hires exp/tri4_accents_cv_train_with_accents_except_england_canada_ali exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs
+steps/nnet3/get_egs_mod.sh: feature type is raw
+steps/nnet3/get_egs_mod.sh: working out number of frames of training data
+steps/nnet3/get_egs_mod.sh: working out feature dim
+steps/nnet3/get_egs_mod.sh: creating 6 archives, each with 388588 egs, with
+steps/nnet3/get_egs_mod.sh:   8 labels per example, and (left,right) context = (16,12)
+steps/nnet3/get_egs_mod.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/ali.ark,exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs/ali.scp 
+LOG (copy-int-vector[5.2.204~1-08848]:main():copy-int-vector.cc:83) Copied 45328 vectors of int32.
+steps/nnet3/get_egs_mod.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs_mod.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs_mod.sh: Generating training examples on disk
+steps/nnet3/get_egs_mod.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs_mod.sh: removing temporary archives
+steps/nnet3/get_egs_mod.sh: removing temporary alignments and transforms
+steps/nnet3/get_egs_mod.sh: Finished preparing training examples
+2018-02-23 16:01:02,604 [steps/nnet3/train_raw_dnn.py:34 - <module> - INFO ] Starting raw DNN trainer (train_raw_dnn.py)
+2018-02-23 16:01:02,612 [steps/nnet3/train_raw_dnn.py:172 - train - INFO ] Arguments for the experiment
+{'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl --mem 4G',
+ 'compute_average_posteriors': False,
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs',
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/cv_train_with_accents_except_england_canada_hires',
+ 'final_effective_lrate': 0.00017,
+ 'frames_per_eg': 8,
+ 'image_augmentation_opts': None,
+ 'initial_effective_lrate': 0.0017,
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '512',
+ 'momentum': 0.0,
+ 'nj': 4,
+ 'num_epochs': 2.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 6,
+ 'num_jobs_initial': 3,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 20,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'targets_scp': None,
+ 'transform_dir': None,
+ 'use_dense_targets': False,
+ 'use_gpu': True}
+2018-02-23 16:01:02,618 [steps/libs/nnet3/train/common.py:440 - verify_egs_dir - WARNING ] The ivector ids are not used. It's your responsibility to make sure the ivector extractor has been used consistently
+2018-02-23 16:01:02,619 [steps/nnet3/train_raw_dnn.py:283 - train - INFO ] Preparing the initial network.
+2018-02-23 16:01:03,294 [steps/nnet3/train_raw_dnn.py:322 - train - INFO ] Training will run for 2.0 epochs = 21 iterations
+2018-02-23 16:01:03,295 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 0)
+2018-02-23 16:01:03,298 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 0, learning rate is 0.0051.
+2018-02-23 16:06:46,342 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 1)
+2018-02-23 16:06:46,349 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 1, learning rate is 0.00474591740874.
+2018-02-23 16:10:40,223 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 2)
+2018-02-23 16:10:40,229 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 2, learning rate is 0.00441641804914.
+2018-02-23 16:14:56,927 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 3)
+2018-02-23 16:14:56,934 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 3, learning rate is 0.00410979515758.
+2018-02-23 16:19:12,805 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 4)
+2018-02-23 16:19:12,814 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 4, learning rate is 0.00509928062346.
+2018-02-23 16:24:01,078 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 5)
+2018-02-23 16:24:01,085 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 5, learning rate is 0.00463278606959.
+2018-02-23 16:28:47,212 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 6)
+2018-02-23 16:28:47,219 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 6, learning rate is 0.00420896756846.
+2018-02-23 16:33:51,436 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 7)
+2018-02-23 16:33:51,442 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 7, learning rate is 0.00382392101129.
+2018-02-23 16:39:03,311 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 8)
+2018-02-23 16:39:03,316 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 8, learning rate is 0.00347409944666.
+2018-02-23 16:44:18,346 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 9)
+2018-02-23 16:44:18,352 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 9, learning rate is 0.00315628040686.
+2018-02-23 16:49:32,602 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 10)
+2018-02-23 16:49:32,607 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 10, learning rate is 0.00286753622331.
+2018-02-23 16:54:43,019 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 11)
+2018-02-23 16:54:43,026 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 11, learning rate is 0.00325650882212.
+2018-02-23 17:00:36,288 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 12)
+2018-02-23 17:00:36,301 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 12, learning rate is 0.0028884770796.
+2018-02-23 17:06:13,788 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 13)
+2018-02-23 17:06:13,794 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 13, learning rate is 0.0025620381504.
+2018-02-23 17:11:57,175 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 14)
+2018-02-23 17:11:57,182 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 14, learning rate is 0.00227249145594.
+2018-02-23 17:17:40,454 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 15)
+2018-02-23 17:17:40,462 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 15, learning rate is 0.00201566764981.
+2018-02-23 17:23:29,820 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 16)
+2018-02-23 17:23:29,827 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 16, learning rate is 0.00178786858092.
+2018-02-23 17:29:36,374 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 17)
+2018-02-23 17:29:36,380 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 17, learning rate is 0.00158581404179.
+2018-02-23 17:35:41,274 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 18)
+2018-02-23 17:35:41,279 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 18, learning rate is 0.00168791344194.
+2018-02-23 17:38:11,710 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 19)
+2018-02-23 17:38:11,718 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 19, learning rate is 0.00146167282164.
+2018-02-23 17:40:39,301 [steps/libs/nnet3/train/frame_level_objf/common.py:201 - train_one_iteration - INFO ] Training neural net (pass 20)
+2018-02-23 17:40:39,308 [steps/libs/nnet3/train/frame_level_objf/common.py:265 - train_one_iteration - INFO ] On iteration 20, learning rate is 0.00102.
+2018-02-23 17:43:59,453 [steps/nnet3/train_raw_dnn.py:395 - train - INFO ] Doing final combination to produce final.raw
+2018-02-23 17:43:59,453 [steps/libs/nnet3/train/frame_level_objf/common.py:466 - combine_models - INFO ] Combining set([12, 13, 14, 15, 16, 17, 18, 19, 20, 21]) models.
+2018-02-23 17:46:15,456 [steps/nnet3/train_raw_dnn.py:417 - train - INFO ] Cleaning up the experiment directory exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada
+exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada: num-iters=21 nj=3..6 num-params=10.3M dim=40->16 combine=-0.65->-0.20 loglike:train/valid[13,20]=(-1.19,-0.27/-1.24,-0.47) accuracy:train/valid[13,20]=(0.38,0.914/0.34,0.869)
+steps/nnet3/train_raw_dnn.py --stage=-10 --cmd=run.pl --mem 4G --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 2 --trainer.optimization.num-jobs-initial 3 --trainer.optimization.num-jobs-final 6 --trainer.optimization.initial-effective-lrate 0.0017 --trainer.optimization.final-effective-lrate 0.00017 --egs.dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs --cleanup.preserve-model-interval 20 --use-gpu true --use-dense-targets false --feat-dir=data/cv_train_with_accents_except_england_canada_hires --reporting.email= --dir exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada
+['steps/nnet3/train_raw_dnn.py', '--stage=-10', '--cmd=run.pl --mem 4G', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '2', '--trainer.optimization.num-jobs-initial', '3', '--trainer.optimization.num-jobs-final', '6', '--trainer.optimization.initial-effective-lrate', '0.0017', '--trainer.optimization.final-effective-lrate', '0.00017', '--egs.dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada/egs', '--cleanup.preserve-model-interval', '20', '--use-gpu', 'true', '--use-dense-targets', 'false', '--feat-dir=data/cv_train_with_accents_except_england_canada_hires', '--reporting.email=', '--dir', 'exp/nnet3/tdnn_1024nodes_300bnlayer_except_england_canada']
