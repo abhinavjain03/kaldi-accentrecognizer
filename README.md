@@ -25,5 +25,3 @@ This is the script [my_run.sh](./my_run.sh).
 2. **alignments (accent alignments)** - The script first creates triphone state alignments for the training data (This is done just to get the number of frames but there is an easy way to do it also). Then use the text format of the alignments to create accent alignments which contains accent class for every frame of each utterance. This is done using [temp.cc](./temp.cc) which takes a file containing a table with utterance id and its corresponding accent class as input. 
 3. Once all these are done, xconfig and training is standard.
 
-
-This repo along with [Accent Embeddings - HMM & Baseline](https://github.com/abhinavjain03/kaldi-accents "AE - HMM & Baseline") & [Accent Embeddings - Multitask](https://github.com/abhinavjain03/kaldi-accentsmultitask "AE - MTL") form the complete work mentioned in the [Paper](https://www.isca-speech.org/archive/Interspeech_2018/abstracts/1864.html "IS1864").
